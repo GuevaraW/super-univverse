@@ -1,0 +1,8 @@
+.heroes-list {
+	padding: 2rem;
+	margin: auto;
+	max-width: 1200px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 0.5rem 1rem;
+}
