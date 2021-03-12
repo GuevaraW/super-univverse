@@ -5,6 +5,7 @@ import FrontCard from 'components/FrontCard';
 import SearchBox from 'components/SearchBox';
 
 import 'scss/layouts/heroes.scss';
+import TitleBar from 'components/TitleBar';
 
 const Heroes = () => {
 	const [dataHeroes, setDataHeroes] = useState([]);
@@ -25,6 +26,7 @@ const Heroes = () => {
 
 	return (
 		<>
+			<TitleBar></TitleBar>
 			<SearchBox></SearchBox>
 			<div className="heroes-list">
 				{heroes.map((hero) => (
