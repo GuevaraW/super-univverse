@@ -1,11 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { getAllHeroes } from 'helpers/api';
 import paginateHeroes from 'helpers/paginate';
-import FrontCard from 'components/FrontCard';
+import TitleBar from 'components/TitleBar';
 import SearchBox from 'components/SearchBox';
+import FrontCard from 'components/FrontCard';
+import SortFilter from 'components/SortFilter';
 
 import 'scss/layouts/heroes.scss';
-import TitleBar from 'components/TitleBar';
 
 const Heroes = () => {
 	const [dataHeroes, setDataHeroes] = useState([]);
@@ -39,6 +40,7 @@ const Heroes = () => {
 					></FrontCard>
 				))}
 			</div>
+			<SortFilter></SortFilter>
 		</>
 	);
 };
