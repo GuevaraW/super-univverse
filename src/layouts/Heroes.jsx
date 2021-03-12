@@ -1,35 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { getAll, paginateHeroes } from 'helpers/api';
+import React, { useState, useEffect, Fragment } from 'react';
+import { getAllHeroes } from 'helpers/api';
+import paginateHeroes from 'helpers/paginate';
 import FrontCard from 'components/FrontCard';
+import SearchBox from 'components/SearchBox';
 
 import 'scss/layouts/heroes.scss';
 
-const Main = () => {
-	const [page, setPage] = useState([]);
+const Heroes = () => {
+	const [dataHeroes, setDataHeroes] = useState([]);
+	const [heroes, setHeroes] = useState([]);
 
 	useEffect(() => {
-		getAll()
+		getAllHeroes()
 			.then((data) => {
-				const pageData = paginateHeroes(data, 15, 3);
-				setPage(pageData);
+				setDataHeroes(data);
 			})
 			.catch((err) => console.log(err));
 	}, []);
 
-	const heroes = page.map((hero) => {
-		return (
-			<FrontCard
-				key={hero.id}
-				name={hero.name}
-				publisher={hero.biography.publisher}
-				alignment={hero.biography.alignment}
-				images={hero.images}
-			></FrontCard>
-		);
-	});
+	useEffect(() => {
+		const pageData = paginateHeroes(dataHeroes, 15, 3);
+		setHeroes(pageData);
+	}, [dataHeroes]);
 
-	console.log(heroes);
-	return <div className="heroes-list">{heroes}</div>;
+	return (
+		<>
+			<SearchBox></SearchBox>
+			<div className="heroes-list">
+				{heroes.map((hero) => (
+					<FrontCard
+						key={hero.id}
+						name={hero.name}
+						publisher={hero.biography.publisher}
+						alignment={hero.biography.alignment}
+						images={hero.images}
+					></FrontCard>
+				))}
+			</div>
+		</>
+	);
 };
 
-export default Main;
+export default Heroes;
