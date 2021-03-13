@@ -40,7 +40,7 @@ const Heroes = () => {
 					></FrontCard>
 				))}
 			</div>
-			<SortFilter></SortFilter>
+			<SortFilter setDataHeroes={setDataHeroes} dataHeroes={dataHeroes}></SortFilter>
 		</>
 	);
 };
