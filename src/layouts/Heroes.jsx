@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getAllHeroes } from 'helpers/api';
 import TitleBar from 'components/TitleBar';
 import SearchBox from 'components/SearchBox';
@@ -9,11 +9,13 @@ import 'scss/layouts/heroes.scss';
 
 const Heroes = () => {
 	const [dataHeroes, setDataHeroes] = useState([]);
+	const [dataHeroesFiltered, setDataHeroesFiltered] = useState([]);
 
 	useEffect(() => {
 		getAllHeroes()
 			.then((data) => {
 				setDataHeroes(data);
+				setDataHeroesFiltered(data);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -22,8 +24,8 @@ const Heroes = () => {
 		<>
 			<TitleBar></TitleBar>
 			<SearchBox></SearchBox>
-			<HeroCards dataHeroes={dataHeroes}></HeroCards>
-			<SortFilter setDataHeroes={setDataHeroes} dataHeroes={dataHeroes}></SortFilter>
+			<HeroCards dataHeroes={dataHeroesFiltered}></HeroCards>
+			<SortFilter dataToFilter={dataHeroes} setDataToFilter={setDataHeroesFiltered}></SortFilter>
 		</>
 	);
 };
