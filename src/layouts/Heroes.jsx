@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getAllHeroes } from 'helpers/api';
 import TitleBar from 'components/TitleBar';
 import SearchBox from 'components/SearchBox';
-import HeroCards from 'components/HeroCards';
-import SortFilter from 'components/SortFilter';
+import HeroCards from 'layouts/HeroCards';
+import SortFilter from 'layouts/SortFilter';
 
 import 'scss/layouts/heroes.scss';
 
